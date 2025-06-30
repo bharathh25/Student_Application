@@ -91,6 +91,8 @@
       text-align: center;
       color: red;
     }
+    
+    
   </style>
 </head>
 <body>
@@ -107,9 +109,7 @@
     <h3 class="error"><%=request.getAttribute("error")%></h3>
     <%} %>
     
-    <%if(request.getAttribute("success")!=null){ %>
-    <h3 class="success"><%=request.getAttribute("success")%></h3>
-    <%} %>
+   
 
     <!-- Display success or error message if needed -->
     <!-- <h3 class="success">Account updated successfully!</h3> -->
@@ -135,11 +135,11 @@
         <button type="submit">Update Account</button>
         
         
-        <!--  <button type="button" onclick="location.href='Dashboard.jsp'">Back to Dashboard</button> -->
+       <button type="submit" onclick="location.href='Dashboard.jsp'">Back to Dashboard</button> 
         
-        <form action="Dashboard.jsp" method="get" style="display: inline;">
+      <!-- <form action="Dashboard.jsp" method="get" style="display: inline;">
            <button type="submit" class="btn btn-secondary">Back to Dashboard</button>
-        </form>
+        </form> -->
         
       </div>
     </form>

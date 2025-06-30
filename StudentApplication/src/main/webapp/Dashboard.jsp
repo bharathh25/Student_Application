@@ -32,23 +32,24 @@
 %>
 
 
-
+     
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-			<a class="navbar-brand" href="Dashboard.jsp">Welcome, <%= (s.getName() != null) ? s.getName() : "" %></a>
+			<a class="navbar-brand" href="Dashboard.jsp">Welcome, <%= (s.getName() != null) ? s.getName() : "" %> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                  <% if(s.getId() == 1) { %>   
+                <% if(s != null && s.getId() == 1){ %>
+     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">View Users</a>
+                        <a class="nav-link" href="ViewUsers.jsp">View Users</a>  <!-- To be implemented -->
                     </li>
-                    <%}%> 
+                    <% }%> 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Reset Password</a>
+                        <a class="nav-link" href="ResetPassword.jsp">Reset Password</a>   <!-- To be implemented -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="UpdateAccount.jsp">Update Account</a>
@@ -67,9 +68,21 @@
     <div class="container mt-4">
         <h1 class="text-center mb-4">Dashboard</h1>
         
-    <%if(request.getAttribute("success")!=null){ %>
-    <h3 align="center" class="success"><%=request.getAttribute("success")%></h3>
-    <%}%>
+    <% if (request.getAttribute("success") != null) { %>
+    <h3 style="color: green; text-align: center;" id="SuccessMessage"><%= request.getAttribute("success") %></h3>
+<% } else if (request.getAttribute("info") != null) { %>
+    <h3 style="color: yellow; text-align: center;" id="InfoMessage"><%= request.getAttribute("info") %></h3>
+<% } else if (request.getAttribute("error") != null) { %>
+    <h3 style="color: red; text-align: center;"><%= request.getAttribute("error") %></h3>
+<% } %> 
+
+<% String msg = request.getParameter("msg"); %>
+<% if ("notChanged".equals(msg)) { %>
+    <h3 style="color: Yellow; text-align: center;" id="InfoMessage">
+        Password not changed.
+    </h3>
+<% } %>
+
         
         
         
@@ -104,5 +117,38 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    // Wait until the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the success message element
+        const successMsg = document.getElementById("SuccessMessage");
+        
+        // If the element exists, hide it after 5 seconds (5000 ms)
+        if (successMsg) {
+            setTimeout(() => {
+                successMsg.style.display = "none";
+            }, 5000);
+        }
+    });
+	</script>
+	
+	
+	<script>
+    // Wait until the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the success message element
+        const infoMsg = document.getElementById("InfoMessage");
+        
+        // If the element exists, hide it after 5 seconds (5000 ms)
+        if (infoMsg) {
+            setTimeout(() => {
+                infoMsg.style.display = "none";
+            }, 5000);
+        }
+    });
+	</script>
+    
+    
 </body>
 </html>

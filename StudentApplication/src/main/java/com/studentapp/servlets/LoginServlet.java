@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		if(s!=null) {
 			//out.println("<h1>Login Successful...."+s.getName()+"</h1>");
 			session.setAttribute("Student", s);
-			req.setAttribute("success", "Logged in Successfully...");
+			req.setAttribute("success", "Login Successfull...");
 			RequestDispatcher rd = req.getRequestDispatcher("Dashboard.jsp");
 			rd.forward(req, resp);
 		}

@@ -1,4 +1,4 @@
-package com.student.dao; 
+ package com.student.dao; 
 import java.sql.Connection; 
 import java.sql.PreparedStatement; 
 import java.sql.ResultSet; 
@@ -76,7 +76,7 @@ private Connection con;
   // TODO Auto-generated method stub 
 	 PreparedStatement ps = null;
 	 int res=0;
-	 String query ="DELETE FROM STUDENT WHERE ID=?";
+	 String query ="DELETE FROM STUDENT WHERE ID=? AND ID!=1";
 	 try {
 		ps=con.prepareStatement(query);
 		ps.setInt(1,id);
@@ -129,7 +129,7 @@ private Connection con;
  public ArrayList<Student> getStudent() { 
   // TODO Auto-generated method stub 
 	 PreparedStatement ps = null;
-	 String query = "SELECT * FROM STUDENT";
+	 String query = "SELECT * FROM STUDENT";   //change id!=0 in where condition
 	 ArrayList<Student> list = new ArrayList<>();
 	 Student s = null;
 	 

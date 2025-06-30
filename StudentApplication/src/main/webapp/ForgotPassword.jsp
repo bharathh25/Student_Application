@@ -1,3 +1,4 @@
+<%@page import="com.student.dto.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -103,15 +104,21 @@
   </style>
 </head>
 <body>
+
+<%Student s =(Student)session.getAttribute("Student"); %>
+<%if(s!=null){
+	session.invalidate();
+}%>
+
   <div class="container">
     <h1>Pentagon Space</h1><br>
-    <h2>Forgot Password</h2>
+    <h2>Update your password here.</h2>
     
     <% if(request.getAttribute("error")!=null){ %>
     <h3 class=failure><%=request.getAttribute("error") %></h3>
     <%} %>
 
-    <form action="updatePassword" method="post">
+    <form action="forgotPassword" method="post">
       <label for="phone">Enter your Phone Number:</label>
       <input type="text" id="phone" name="phone" required>
 
